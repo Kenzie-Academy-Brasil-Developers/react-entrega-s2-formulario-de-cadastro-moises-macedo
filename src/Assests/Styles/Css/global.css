@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: 'Barlow Condensed', sans-serif; }
+
+body {
+  background-image: url("../../Img/background2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+@font-face {
+  font-family: 'Icons';
+  src: url("/src/Assests/Fonts/Iconic-Pictograms.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+@keyframes rotate-hue {
+  to {
+    filter: hue-rotate(1turn); } }
+@keyframes colors {
+  0% {
+    background-position: 0% 50%; }
+  50% {
+    background-position: 100% 50%; }
+  100% {
+    background-position: 0% 50%; } }
+@keyframes rotate {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg); }
+  50% {
+    opacity: 0;
+    transform: scale(0.8) rotateY(180deg); }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateY(360deg); } }
+@keyframes shake {
+  25% {
+    transform: translateX(4px); }
+  50% {
+    transform: translateX(-5px); }
+  100% {
+    transform: translateX(4px); } }
+
+/*# sourceMappingURL=global.css.map */
