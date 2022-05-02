@@ -11,16 +11,11 @@ function App() {
   return (
     <>
       <Routes>
-        <Route exact path="/" element={<Form addName={setAddName} />} />
-        <Route path="/welcome" element={<Welcome addName={addName} />} />
+        <Route exact path={"/"} element={<Form addName={setAddName} />} />
+        <Route path={"/welcome"} element={<Welcome addName={addName} />} />
       </Routes>
       <ToastContainer />
-
     </>
-
-
-
-
   );
 }
 

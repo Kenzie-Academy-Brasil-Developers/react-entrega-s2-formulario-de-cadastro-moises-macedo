@@ -10,7 +10,8 @@ const Welcome = ({ addName }) => {
     const handleNavigate = () => navigate(-1)
 
     return (
-        <>  <h2 className="welcome--title">Cadastro finalizado</h2>
+        <>
+            <h2 className="welcome--title">Cadastro finalizado</h2>
             <div className="container--welcome">
                 <div className="welcome--addName">
                     <p className="add--welcome">Bem vindo, </p>
@@ -21,7 +22,6 @@ const Welcome = ({ addName }) => {
                         <p>Voltar</p>
                     </button>
                 </div>
-
             </div>
         </>
 
