@@ -5,13 +5,19 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css'
+import { Link, useNavigate } from "react-router-dom";
 
-const Form = ({ }) => {
 
+const Form = ({ addName }) => {
+
+    const navigateReturn = useNavigate();
+    const navigateFrom = useNavigate();
 
 
     const [isActive, setIsActive] = useState(true);
     const [isActiveConfirm, setIsActiveConfirm] = useState(true);
+    const [isRequired, setIsRequired] = useState(true);
+    const [userInput, setUserInput] = useState("");
 
     const formSchema = yup.object().shape({
         name: yup.string().required('Nome completo obrigatório').min(6, "Mínimo 6 caracteres."),
@@ -32,11 +38,12 @@ const Form = ({ }) => {
     })
 
     const formSubmit = (data) => {
-        console.log(data);
+        addName(data.name);
+        navigateFrom('/welcome');
         reset()
     }
 
-    const notify = () =>{
+    const notify = () => {
 
         const name = errors.name ? toast.error("Nome completo obrigatório", {
             position: toast.POSITION.TOP_CENTER
@@ -57,7 +64,9 @@ const Form = ({ }) => {
             position: toast.POSITION.TOP_CENTER
         }) : null;
 
+
     }
+    const eventName = (e) => console.log(e.target.value);
 
 
 
@@ -70,18 +79,19 @@ const Form = ({ }) => {
             <div className="division"></div>
             <form className=" container--form" onSubmit={handleSubmit(formSubmit)} >
                 <div className="form--name">
-                    <input  type="text" className={errors.name ? "invalid" : ""} placeholder="Nome completo" {...register("name")} required=""/>
+                    <input type="text" 
+                        className={errors.name ? "invalid" : ""} placeholder="Nome completo" {...register("name")} />
                     <span className="fonts--icons">u</span>
                     <span className="border--bottom"></span>
 
                 </div>
                 <div className="form--email">
-                    <input type="text" className={errors.email ? "invalid" : ""} placeholder="Endereço de e-mail"{...register("email")}/>
+                    <input type="text" className={errors.email ? "invalid" : ""} placeholder="Endereço de e-mail"{...register("email")} />
                     <span className="fonts--icons-email">M</span>
                     <span className="border--bottom-email"></span>
                 </div>
                 <div className="form--confirmEmail">
-                    <input type="text" className={errors.confirmEmail ? "invalid" : ""} placeholder="Confirme e-mail" {...register("confirmEmail")}/>
+                    <input type="text" className={errors.confirmEmail ? "invalid" : ""} placeholder="Confirme e-mail" {...register("confirmEmail")} />
                     <span className="fonts--icons-confirmEmail">M</span>
                     <span className="border--bottom-confirmEmail"></span>
                 </div>
@@ -90,12 +100,12 @@ const Form = ({ }) => {
                     <span className="fonts--icons-senha" onClick={() => setIsActive(!isActive)}>{isActive === true ? "L" : "U"}</span>
                     <span className="border--bottom-senha"></span>
                     {<span className={errors.password ? "input--NotFilled" :
-                    "input--correct"}>{errors.password?.message}</span>}
+                        "input--correct"}>{errors.password?.message}</span>}
                 </div>
                 <div className="form--confirmSenha">
                     <input type={isActiveConfirm === true ? "password" : "text"} className={errors.confirmPassword ? "invalid" : ""} placeholder="Confirme a senha" {...register("confirmPassword")} />
                     <span className="fonts--icons-confirmSenha" onClick={() => setIsActiveConfirm(!isActiveConfirm)}>{isActiveConfirm === true ? "L" : "U"}</span>
-                    <span className="border--bottom-confirmSenha"></span>                    
+                    <span className="border--bottom-confirmSenha"></span>
                 </div>
                 <div className="form--checkbox">
                     <input type="checkbox" className={errors.checkbox ? "input--NotFilled-checkbox" :
@@ -106,8 +116,9 @@ const Form = ({ }) => {
                     <button onClick={notify}>
                         <p>Cadastrar</p>
                     </button>
-                </div>                
+                </div>
             </form>
+
         </div>
     )
 }
